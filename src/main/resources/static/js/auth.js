@@ -1,3 +1,4 @@
+// Updated API configuration for Render deployment
 
 const API_BASE_URL = "/api";
 
