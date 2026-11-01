@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Digital Wallet</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Digital Wallet</h1>
+
+        <nav>
+            <span id="welcomeUser">Welcome!</span>
+            <button id="logoutBtn" class="btn logout-btn">Logout</button>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="balance-card">
+            <h2>Available Balance</h2>
+            <h1 id="balance">₹0.00</h1>
+            <p>Your current wallet balance</p>
+        </section>
+
+        <section class="operations">
+
+            <div class="operation-card">
+                <h2>Deposit Money</h2>
+
+                <form id="depositForm">
+                    <input type="number" id="depositAmount"
+                           placeholder="Enter amount" min="0.01"
+                           step="0.01" required>
+
+                    <button type="submit" class="btn">
+                        Deposit
+                    </button>
+                </form>
+
+            </div>
+
+            <div class="operation-card">
+                <h2>Withdraw Money</h2>
+
+                <form id="withdrawForm">
+                    <input type="number" id="withdrawAmount"
+                           placeholder="Enter amount" min="0.01"
+                           step="0.01" required>
+
+                    <button type="submit" class="btn">
+                        Withdraw
+                    </button>
+                </form>
+
+            </div>
+
+            <div class="operation-card">
+                <h2>Transfer Money</h2>
+
+                <form id="transferForm">
+
+                    <input type="number" id="receiverUserId"
+                           placeholder="Receiver User ID"
+                           min="1" required>
+
+                    <input type="number" id="transferAmount"
+                           placeholder="Enter amount"
+                           min="0.01" step="0.01" required>
+
+                    <button type="submit" class="btn">
+                        Transfer
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <p id="message" class="message"></p>
+
+        <section class="transactions-section">
+
+            <h2>Transaction History</h2>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="transactionTable">
+                        <tr>
+                            <td colspan="4">Loading transactions...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
