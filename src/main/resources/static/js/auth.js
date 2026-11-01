@@ -66,6 +66,7 @@ if (registerForm) {
 }
 
 
+
 // LOGIN
 
 const loginForm = document.getElementById("loginForm");
@@ -78,29 +79,39 @@ if (loginForm) {
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-
         const message = document.getElementById("message");
+        const loginButton = loginForm.querySelector('button[type="submit"]');
 
         const loginData = {
             email: email,
             password: password
         };
 
+        // Show loading state
+        const originalButtonText = loginButton.textContent;
+        loginButton.disabled = true;
+        loginButton.textContent = "Logging in...";
+
+        message.textContent = "";
+
         try {
 
             const response = await fetch(`${API_BASE_URL}/users/login`, {
+
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify(loginData)
+
             });
 
             const result = await response.json();
 
             if (response.ok) {
 
-                // Store authentication information
                 localStorage.setItem("token", result.token);
                 localStorage.setItem("userId", result.userId);
                 localStorage.setItem("fullName", result.fullName);
@@ -117,6 +128,7 @@ if (loginForm) {
                     result.error || "Invalid email or password";
 
                 message.style.color = "red";
+
             }
 
         } catch (error) {
@@ -125,6 +137,12 @@ if (loginForm) {
             message.style.color = "red";
 
             console.error(error);
+
+        } finally {
+
+            loginButton.disabled = false;
+            loginButton.textContent = originalButtonText;
+
         }
 
     });
